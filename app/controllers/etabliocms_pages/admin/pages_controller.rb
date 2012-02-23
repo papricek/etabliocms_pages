@@ -9,7 +9,7 @@ module EtabliocmsPages
       def create
         @page = Page.new(params[:page])
         if @page.save
-          flash[:notice] = t('page.updated')
+          flash[:notice] = t('page.created')
           redirect_to :action => 'index'
         else
           render :action => 'new'

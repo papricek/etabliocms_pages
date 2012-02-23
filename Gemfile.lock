@@ -10,6 +10,7 @@ PATH
   remote: /home/fafa/www/etabliocms/etabliocms_core
   specs:
     etabliocms_core (0.0.1)
+      RedCloth (= 4.2.9)
       configatron
       devise (~> 2.0.4)
       rails (~> 3.2.1)
@@ -17,6 +18,7 @@ PATH
 GEM
   remote: http://rubygems.org/
   specs:
+    RedCloth (4.2.9)
     actionmailer (3.2.1)
       actionpack (= 3.2.1)
       mail (~> 2.4.0)

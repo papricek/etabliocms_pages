@@ -4,6 +4,7 @@ module EtabliocmsPages
 
     initializer "etabliocms_core.initialize" do |app|
       EtabliocmsCore.setup do |config|
+        config.modules ||= []
         config.modules << :pages
       end
     end

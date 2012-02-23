@@ -7,10 +7,16 @@ FactoryGirl.define do
     "#{name}#{n}@#{Faker::Internet.domain_name}"
   end
 
-  factory :user, :class => 'EtabliocmsPages::Page' do
+  factory :user, :class => 'EtabliocmsCore::User' do
     email
     password "123456"
     password_confirmation "123456"
+  end
+
+  factory :page, :class => 'EtabliocmsPages::Page' do
+    title
+    text { Faker::Lorem.paragraphs.to_s }
+    locale "cs"
   end
 
 end
