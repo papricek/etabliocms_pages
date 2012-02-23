@@ -34,7 +34,7 @@
     <%= f.text_field :url, :class => 'text-field' %>
   </p>
 
-  <% unless @page.new_record? %>
+  <% if !@page.new_record? && respond_to?(:page_path) %>
       <p>
         <strong>Náhled: </strong>
         <%= link_to @page.title, page_url(@page, :locale => @page.locale), :"data-popup" => "true" %>

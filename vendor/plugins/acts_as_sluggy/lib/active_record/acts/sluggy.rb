@@ -8,7 +8,7 @@ module ActiveRecord
       module ClassMethods
 
         def has_slug(options = {})
-          configuration = { :attribute => "title", :to_param => "slug", :to_url => "to_url" }
+          configuration = { :attribute => "title", :to_param => "slug", :to_url => "parameterize" }
           configuration.update(options) if options.is_a?(Hash)
 
           before_save :update_slug
