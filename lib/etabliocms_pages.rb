@@ -4,3 +4,4 @@ module EtabliocmsPages
 end
 
 require "etabliocms_pages/engine"
+require "form_helper"

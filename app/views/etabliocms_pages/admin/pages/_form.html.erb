@@ -10,7 +10,7 @@
 
   <p>
     <%= f.label :child_of, :id => "page_child_of_label" %>
-    <%= f.select :child_of, [[t('admin.top_level'), nil]] + Page.order("lft ASC").all.collect { |d| [d.title, d.id] },
+    <%= f.select :child_of, [[t('admin.top_level'), nil]] + EtabliocmsPages::Page.order("lft ASC").all.collect { |d| [d.title, d.id] },
                  :selected => @page.parent ? [@page.parent.title, @page.parent_id] : nil %>
   </p>
 
@@ -30,30 +30,9 @@
   </p>
 
   <p>
-    <%= f.label :page_title, :id => "page_page_title_label" %>
-    <%= f.text_field :page_title, :class => 'text-field' %>
-  </p>
-
-  <p>
-    <%= f.label :page_description, :id => "page_page_description_label" %>
-    <%= f.text_area :page_description, :class => 'text-field' %>
-  </p>
-
-  <p>
     <%= f.label :url, :id => "page_url_label" %>
     <%= f.text_field :url, :class => 'text-field' %>
   </p>
-
-  <p>
-    <%= f.label :image, :id => "page_image_label" %>
-    <%= f.file_field :image, :class => 'text-field' %>
-  </p>
-
-  <% if @page.image.file? %>
-      <p>
-        <%= image_tag(@page.image.url) %>
-      </p>
-  <% end %>
 
   <% unless @page.new_record? %>
       <p>

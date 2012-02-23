@@ -1,6 +1,6 @@
 module EtabliocmsPages
   module Admin
-    class PagesController < EtabliocmsPages::Admin::BaseController
+    class PagesController < EtabliocmsCore::Admin::BaseController
 
       def new
         @page = Page.new

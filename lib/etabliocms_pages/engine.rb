@@ -8,6 +8,10 @@ module EtabliocmsPages
       end
     end
 
+    initializer "etabliocms_core.link_public_assets" do |app|
+      app.middleware.insert_before(::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public")
+    end
+
   end
 
 end
