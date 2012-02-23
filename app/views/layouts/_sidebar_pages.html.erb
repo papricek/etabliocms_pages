@@ -1,0 +1,5 @@
+<h3><%= image_tag asset_path("admin/sidebar-pages.png"), :alt => t('page.pages') %><%= t('page.pages') %></h3>
+<ul>
+  <li><%= link_to_unless_current I18n.t('page.pages_count', :count => EtabliocmsPages::Page.count), admin_pages_path %></li>
+  <li><%= link_to_unless_current t('page.add'), new_admin_page_path %></li>
+</ul>

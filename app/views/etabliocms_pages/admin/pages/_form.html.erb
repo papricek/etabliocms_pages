@@ -1,0 +1,69 @@
+<fieldset>
+  <legend><%= t('page.admin_legend') %></legend>
+
+  <%= render "layouts/errors", :target => @page %>
+
+  <p>
+    <%= f.label :title, :id => "page_title_label" %>
+    <%= f.text_field :title, :class => 'text-field' %>
+  </p>
+
+  <p>
+    <%= f.label :child_of, :id => "page_child_of_label" %>
+    <%= f.select :child_of, [[t('admin.top_level'), nil]] + Page.order("lft ASC").all.collect { |d| [d.title, d.id] },
+                 :selected => @page.parent ? [@page.parent.title, @page.parent_id] : nil %>
+  </p>
+
+  <p>
+    <%= f.label :locale, :id => "page_locale_label" %>
+    <%= f.select :locale, [[t('admin.locale.cs'), 'cs'], [t('admin.locale.en'), 'en']] %>
+  </p>
+
+
+  <p>
+    <%= f.label :visible, :id => "page_visible_label" %>
+    <%= f.boolean_yes_no_select :visible %>
+  </p>
+
+  <p>
+    <%= f.textile_text_area :text, :width => 560, :height => 200 %>
+  </p>
+
+  <p>
+    <%= f.label :page_title, :id => "page_page_title_label" %>
+    <%= f.text_field :page_title, :class => 'text-field' %>
+  </p>
+
+  <p>
+    <%= f.label :page_description, :id => "page_page_description_label" %>
+    <%= f.text_area :page_description, :class => 'text-field' %>
+  </p>
+
+  <p>
+    <%= f.label :url, :id => "page_url_label" %>
+    <%= f.text_field :url, :class => 'text-field' %>
+  </p>
+
+  <p>
+    <%= f.label :image, :id => "page_image_label" %>
+    <%= f.file_field :image, :class => 'text-field' %>
+  </p>
+
+  <% if @page.image.file? %>
+      <p>
+        <%= image_tag(@page.image.url) %>
+      </p>
+  <% end %>
+
+  <% unless @page.new_record? %>
+      <p>
+        <strong>Náhled: </strong>
+        <%= link_to @page.title, page_url(@page, :locale => @page.locale), :"data-popup" => "true" %>
+      </p>
+  <% end %>
+
+  <p>
+    <%= submit_tag t('admin.save'), :class => 'submit' %>
+  </p>
+
+</fieldset>

@@ -1,0 +1,25 @@
+<% set_title_and_breadcrumb t('page.pages') %>
+
+<h1><%= t('page.pages') %></h1>
+
+<div class="strap">
+  <%= link_to "#{t('page.add')} &raquo;".html_safe, new_admin_page_path, :class => 'text-icon icon-add' %>
+  <%= link_to "#{t('admin.refresh')} &raquo;".html_safe, admin_pages_path, :class => 'text-icon icon-refresh' %>
+  <%= link_to "#{t('admin.back_to_admin')} &raquo;".html_safe, admin_path, :class => 'text-icon icon-backward' %>
+</div>
+
+<table class="admin-table hierarchical-table">
+  <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.page.title') %></th>
+      <th><%= t('admin.created_at') %></th>
+      <th><%= t('activerecord.attributes.page.locale') %></th>
+      <th><%= t('admin.actions') %></th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <%= render_table_tree(Page.order("lft asc")) %>
+
+  </tbody>
+</table>
