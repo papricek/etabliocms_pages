@@ -10,7 +10,7 @@
 
   <p>
     <%= f.label :child_of, :id => "page_child_of_label" %>
-    <%= f.select :child_of, [[t('admin.top_level'), nil]] + EtabliocmsPages::Page.order("lft ASC").all.collect { |d| [d.title, d.id] },
+    <%= f.select :child_of, [[t('hierarchy.top_level'), nil]] + @page.other_pages_for_select,
                  :selected => @page.parent ? [@page.parent.title, @page.parent_id] : nil %>
   </p>
 

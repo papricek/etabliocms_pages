@@ -14,6 +14,12 @@ module EtabliocmsPages
       self_and_ancestors.map(&:slug).join("/")
     end
 
+    def other_pages_for_select
+      pages = EtabliocmsPages::Page.order("lft ASC")
+      pages = pages.where("id != ?", id) unless new_record?
+      pages.map { |d| [d.title, d.id] }
+    end
+
     scope :for_locale, lambda { |locale| where(:locale => locale) }
     scope :visible, where(:visible => true)
 

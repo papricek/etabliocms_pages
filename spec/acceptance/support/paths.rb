@@ -4,6 +4,10 @@ module NavigationHelpers
     "/"
   end
 
+  def admin_homepage
+    "/admin"
+  end
+
   def login_page
     "/sign_in"
   end

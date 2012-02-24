@@ -1,6 +1,10 @@
-require 'faker'
+require 'ffaker'
 
 FactoryGirl.define do
+
+  sequence :title do |n|
+    Faker::Lorem.sentence(3)
+  end
 
   sequence :email do |n|
     name = [Faker::Name.first_name, Faker::Name.last_name].map { |i| i.gsub(/\W/, '') }.join(".").downcase
