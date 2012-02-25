@@ -25,13 +25,15 @@ module EtabliocmsPages
 
     private
     def update_position
-      if child_of.present? and child_of != parent_id
-        parent = Page.find(child_of)
-        move_to_child_of parent unless parent == self or parent == self.parent
-        move_to_bottom
-      elsif !child_of.nil?
-        move_to_root
-        move_to_bottom
+      if child_of.to_i != parent_id.to_i
+        if child_of.present?
+          parent = Page.find(child_of)
+          move_to_child_of parent unless parent == self or parent == self.parent
+          move_to_bottom
+        elsif !child_of.nil?
+          move_to_root
+          move_to_bottom
+        end
       end
       self.child_of = nil
     end
