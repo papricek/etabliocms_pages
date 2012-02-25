@@ -13,12 +13,8 @@ class CreatePages < ActiveRecord::Migration
 
       t.boolean :visible
       t.string :locale, :null => false
-
-
       t.timestamps
     end
-
   end
 
 end
-
