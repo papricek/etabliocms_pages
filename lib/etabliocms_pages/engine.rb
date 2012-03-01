@@ -1,3 +1,5 @@
+require 'awesome_nested_set'
+
 module EtabliocmsPages
 
   class Engine < ::Rails::Engine
