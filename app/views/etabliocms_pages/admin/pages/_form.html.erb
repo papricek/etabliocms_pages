@@ -1,7 +1,7 @@
 <%= render "layouts/errors", :target => @page %>
 
 <fieldset>
-  <legend><%= t('page.admin_legend') %></legend>
+  <legend><%= t('page.admin_legend_basic') %></legend>
 
   <p>
     <%= f.label :child_of, :id => "page_child_of_label" %>
@@ -22,10 +22,19 @@
 </fieldset>
 
 <fieldset>
+  <legend><%= t('page.admin_legend_contents') %></legend>
 
-  <%= f.fields_for :contents do |builder| %>
-      <%= render "content_fields", :f => builder %>
-  <% end %>
+  <div id="contents">
+    <ul>
+      <% @page.contents.each do |content| %>
+          <li><a href="#tabs-<%= content.id %>"><%= t("admin.locales.#{content.locale}") %></a></li>
+      <% end %>
+    </ul>
+
+    <%= f.fields_for :contents do |builder| %>
+        <%= render "content_fields", :f => builder %>
+    <% end %>
+  </div>
 
 </fieldset>
 
@@ -42,3 +51,9 @@
   </p>
 
 </fieldset>
+
+<script>
+    $(function() {
+        $("#contents").tabs();
+    });
+</script>

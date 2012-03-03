@@ -5,7 +5,7 @@ module EtabliocmsPages
     attr_accessor :child_of
     after_save :update_position
 
-    has_many :contents, :class_name => "EtabliocmsPages::Content",:dependent => :destroy
+    has_many :contents, :class_name => "EtabliocmsPages::Content", :order => "locale asc", :dependent => :destroy
     accepts_nested_attributes_for :contents , :reject_if => proc { |attributes| attributes['title'].blank? }
 
     def path

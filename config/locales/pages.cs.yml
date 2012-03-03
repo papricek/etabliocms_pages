@@ -9,7 +9,8 @@ cs:
     moved: Stránka byla úspěšně přesunuta.
     not_moved: Stránka nebyla přesunuta.
     destroy_confirmation: Skutečně chcete smazat tuto stránku?
-    admin_legend: Základní údaje o stránce
+    admin_legend_basic: Základní údaje o stránce
+    admin_legend_contents: Obsah stránky
     edit: "Editace stránky %{title}"
     new: Nová stránka
   helpers:

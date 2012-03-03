@@ -1,8 +1,7 @@
-<div class="fields">
-  <p>
-    <%= f.label :locale %>
-    <%= f.select :locale, I18n.available_locales.map { |l| [t("admin.locales.#{l}"), l.to_s] } %>
-  </p>
+<% content = f.object %>
+<div class="fields" id="tabs-<%= content.id %>">
+
+  <%= f.hidden_field :locale, :value => content.locale %>
 
   <p>
     <%= f.label :title %>
@@ -11,10 +10,10 @@
 
   <% EtabliocmsPages.areas.each do |area| %>
       <p>
-        <%= label_tag "#{f.object.object_id}_#{area}", t("helpers.label.etabliocms_pages_page.contents.#{area}")  %>
+        <%= label_tag "#{content.object_id}_#{area}", t("helpers.label.etabliocms_pages_page.contents.#{area}") %>
         <%= f.textile_text_area "areas[#{area}]",
-                                :id => "#{f.object.object_id}_#{area}",
-                                :value => f.object.areas.values_at(area).first.to_s, :width => 560, :height => 200 %>
+                                :id => "#{content.object_id}_#{area}",
+                                :value => content.areas.values_at(area).first.to_s, :width => 560, :height => 200 %>
       </p>
   <% end %>
 
