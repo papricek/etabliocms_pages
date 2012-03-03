@@ -11,6 +11,12 @@ module EtabliocmsPages
       end
     end
 
+    initializer "etabliocms_pages.initialize" do |app|
+      EtabliocmsPages.setup do |config|
+        config.areas ||= [:text]
+      end
+    end
+
   end
 
 end
