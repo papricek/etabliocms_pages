@@ -4,21 +4,10 @@
   <legend><%= t('page.admin_legend') %></legend>
 
   <p>
-    <%= f.label :title, :id => "page_title_label" %>
-    <%= f.text_field :title, :class => 'text-field' %>
-  </p>
-
-  <p>
     <%= f.label :child_of, :id => "page_child_of_label" %>
     <%= f.select :child_of, [[t('hierarchy.top_level'), nil]] + @page.other_pages_for_select,
                  :selected => @page.parent ? [@page.parent.title, @page.parent_id] : nil %>
   </p>
-
-  <p>
-    <%= f.label :locale, :id => "page_locale_label" %>
-    <%= f.select :locale, [[t('admin.locale.cs'), 'cs'], [t('admin.locale.en'), 'en']] %>
-  </p>
-
 
   <p>
     <%= f.label :visible, :id => "page_visible_label" %>
@@ -26,14 +15,21 @@
   </p>
 
   <p>
-    <%= f.textile_text_area :text, :width => 560, :height => 200 %>
-  </p>
-
-  <p>
     <%= f.label :url, :id => "page_url_label" %>
     <%= f.text_field :url, :class => 'text-field' %>
   </p>
 
+</fieldset>
+
+<fieldset>
+
+  <%= f.fields_for :contents do |builder| %>
+      <%= render "content_fields", :f => builder %>
+  <% end %>
+
+</fieldset>
+
+<fieldset>
   <% if !@page.new_record? && respond_to?(:page_path) %>
       <p>
         <strong>Náhled: </strong>

@@ -12,6 +12,18 @@ cs:
     admin_legend: Základní údaje o stránce
     edit: "Editace stránky %{title}"
     new: Nová stránka
+  helpers:
+    label:
+      etabliocms_pages_page:
+        child_of: Rodič
+        text: Text
+        visible: Viditelné
+        page_title: Meta title
+        page_description: Meta description
+        contents:
+          title: Nadpis
+          locale: Jazyk
+          text: Text
   activerecord:
     attributes:
       "etabliocms_pages/page":

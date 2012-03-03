@@ -3,11 +3,14 @@ module EtabliocmsPages
     class PagesController < EtabliocmsCore::Admin::BaseController
 
       def new
-        @page = Page.new
+        @page = EtabliocmsPages::Page.new
+        I18n.available_locales.each {|locale| @page.contents.build(:locale => locale)}
       end
 
       def create
-        @page = Page.new(params[:page])
+        @page = Page.new(params[:etabliocms_pages_page])
+       puts @page.inspect
+        puts @page.contents.inspect
         if @page.save
           flash[:notice] = t('page.created')
           redirect_to :action => 'index'
@@ -22,7 +25,7 @@ module EtabliocmsPages
 
       def update
         @page = Page.find(params[:id])
-        if @page.update_attributes(params[:page])
+        if @page.update_attributes(params[:etabliocms_pages_page])
           flash[:notice] = t('page.updated')
           redirect_to :action => 'index'
         else

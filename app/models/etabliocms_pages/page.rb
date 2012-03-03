@@ -5,13 +5,19 @@ module EtabliocmsPages
     attr_accessor :child_of
     after_save :update_position
 
-    validates :title, :presence => true
-    validates :locale, :presence => true
-
-    has_slug :to_param => "path"
+    has_many :contents, :class_name => "EtabliocmsPages::Content",:dependent => :destroy
+    accepts_nested_attributes_for :contents , :reject_if => proc { |attributes| attributes['title'].blank? }
 
     def path
       self_and_ancestors.map(&:slug).join("/")
+    end
+
+    def title
+      contents.map(&:title).join(" / ")
+    end
+
+    def locale
+      contents.map(&:locale).join(", ")
     end
 
     def other_pages_for_select
@@ -20,7 +26,6 @@ module EtabliocmsPages
       pages.map { |d| [d.title, d.id] }
     end
 
-    scope :for_locale, lambda { |locale| where(:locale => locale) }
     scope :visible, where(:visible => true)
 
     private
