@@ -15,7 +15,14 @@
         <%= label_tag "#{content.object_id}_#{area}", t("helpers.label.etabliocms_pages_page.contents.#{area}") %>
         <%= f.textile_text_area "areas[#{area}]",
                                 :id => "#{content.object_id}_#{area}",
-                                :value => content.areas.values_at(area).first.to_s, :width => 460, :height => 200 %>
+                                :value => content.areas[area].to_s, :width => 460, :height => 200 %>
+      </p>
+  <% end %>
+
+  <% if !@page.new_record? && respond_to?(:page_path) %>
+      <p>
+        <strong>Náhled: </strong>
+        <%= link_to @page.title, page_url(@page, :locale => @page.locale), :"data-popup" => "true" %>
       </p>
   <% end %>
 
