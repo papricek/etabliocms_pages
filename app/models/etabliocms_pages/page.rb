@@ -1,6 +1,11 @@
 module EtabliocmsPages
   class Page < ActiveRecord::Base
 
+    delegate :title, :areas, :slug, :to => :content, :allow_nil => true
+    def content
+      contents.where(:locale => I18n.locale).first
+    end
+
     acts_as_nested_set
     attr_accessor :child_of
     after_save :update_position
@@ -11,21 +16,25 @@ module EtabliocmsPages
     validate :at_least_one_content_has_title
 
     def path
-      self_and_ancestors.map(&:slug).join("/")
+      self_and_ancestors.map{|p| p.slug }.join("/")
     end
 
-    def title
+    def to_param
+      path
+    end
+
+    def titles
       contents.map(&:title).join(" / ")
     end
 
-    def locale
+    def locales
       contents.map(&:locale).join(", ")
     end
 
     def other_pages_for_select
       pages = EtabliocmsPages::Page.order("lft ASC")
       pages = pages.where("id != ?", id) unless new_record?
-      pages.map { |d| [d.title, d.id] }
+      pages.map { |d| [d.titles, d.id] }
     end
 
     def build_contents_for_available_locales
