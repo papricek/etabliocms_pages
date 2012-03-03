@@ -1,11 +1,6 @@
 module EtabliocmsPages
   class Content < ActiveRecord::Base
 
-    after_initialize :debuggie
-
-    def debuggie
-      puts self.inspect
-    end
     validates :title, :presence => true
     validates :locale, :presence => true
 

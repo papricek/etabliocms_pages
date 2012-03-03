@@ -9,8 +9,6 @@ module EtabliocmsPages
 
       def create
         @page = Page.new(params[:etabliocms_pages_page])
-       puts @page.inspect
-        puts @page.contents.inspect
         if @page.save
           flash[:notice] = t('page.created')
           redirect_to :action => 'index'
