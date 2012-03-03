@@ -1,5 +1,7 @@
 <% content = f.object %>
-<div class="fields" id="tabs-<%= content.id %>">
+<div class="fields" id="tabs-<%= content.object_id %>">
+
+  <%= render "layouts/errors", :target => content %>
 
   <%= f.hidden_field :locale, :value => content.locale %>
 
@@ -13,7 +15,7 @@
         <%= label_tag "#{content.object_id}_#{area}", t("helpers.label.etabliocms_pages_page.contents.#{area}") %>
         <%= f.textile_text_area "areas[#{area}]",
                                 :id => "#{content.object_id}_#{area}",
-                                :value => content.areas.values_at(area).first.to_s, :width => 560, :height => 200 %>
+                                :value => content.areas.values_at(area).first.to_s, :width => 460, :height => 200 %>
       </p>
   <% end %>
 

@@ -26,6 +26,9 @@ cs:
           locale: Jazyk
           text: Text
   activerecord:
+    errors:
+      messages:
+        at_least_one_content_has_title: Alespoň jedna jazyková mutace musí mít nadpis.
     attributes:
       "etabliocms_pages/page":
         title: Nadpis

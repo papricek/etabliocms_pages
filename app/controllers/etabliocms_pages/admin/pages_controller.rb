@@ -4,7 +4,7 @@ module EtabliocmsPages
 
       def new
         @page = EtabliocmsPages::Page.new
-        I18n.available_locales.each {|locale| @page.contents.build(:locale => locale)}
+        @page.build_contents_for_available_locales
       end
 
       def create
@@ -13,6 +13,7 @@ module EtabliocmsPages
           flash[:notice] = t('page.created')
           redirect_to :action => 'index'
         else
+          @page.build_contents_for_available_locales
           render :action => 'new'
         end
       end

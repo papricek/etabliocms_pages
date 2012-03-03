@@ -26,8 +26,8 @@
 
   <div id="contents">
     <ul>
-      <% @page.contents.each do |content| %>
-          <li><a href="#tabs-<%= content.id %>"><%= t("admin.locales.#{content.locale}") %></a></li>
+      <%@page.contents.sort_by{|a| a.locale.to_s }.each do |content| %>
+          <li><a href="#tabs-<%= content.object_id %>"><%= t("admin.locales.#{content.locale}") %></a></li>
       <% end %>
     </ul>
 

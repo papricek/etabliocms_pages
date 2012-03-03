@@ -6,7 +6,9 @@ module EtabliocmsPages
     after_save :update_position
 
     has_many :contents, :class_name => "EtabliocmsPages::Content", :order => "locale asc", :dependent => :destroy
-    accepts_nested_attributes_for :contents , :reject_if => proc { |attributes| attributes['title'].blank? }
+    accepts_nested_attributes_for :contents, :reject_if => proc { |attributes| attributes['title'].blank? }
+
+    validate :at_least_one_content_has_title
 
     def path
       self_and_ancestors.map(&:slug).join("/")
@@ -26,6 +28,12 @@ module EtabliocmsPages
       pages.map { |d| [d.title, d.id] }
     end
 
+    def build_contents_for_available_locales
+      I18n.available_locales.each do |available_locale|
+        contents.build(:locale => available_locale) unless contents.detect { |c| c.locale == available_locale.to_s }
+      end
+    end
+
     scope :visible, where(:visible => true)
 
     private
@@ -41,6 +49,12 @@ module EtabliocmsPages
         end
       end
       self.child_of = nil
+    end
+
+    def at_least_one_content_has_title
+      if contents.select { |c| c.title.present? }.blank?
+        errors[:base] << I18n.t('activerecord.errors.messages.at_least_one_content_has_title')
+      end
     end
 
   end
