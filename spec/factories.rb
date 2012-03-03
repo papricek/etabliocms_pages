@@ -18,9 +18,13 @@ FactoryGirl.define do
   end
 
   factory :page, :class => 'EtabliocmsPages::Page' do
+    contents { [FactoryGirl.build(:content)] }
+  end
+
+  factory :content, :class => 'EtabliocmsPages::Content' do
     title
-    text { Faker::Lorem.paragraphs.to_s }
     locale "cs"
+    areas :text => Faker::Lorem.paragraphs.to_s
   end
 
 end

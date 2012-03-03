@@ -13,13 +13,13 @@ feature 'Pages', '' do
     page.should have_content('Stránky')
     click_link('Přidat stránku »')
     click_button('Uložit')
-    page.should have_content('Nadpis je povinná položka')
+    page.should have_content('Alespoň jedna jazyková mutace musí mít nadpis.')
     fill_in 'Nadpis', :with => 'A title with české znaky ěščřžýáíé'
     click_button('Uložit')
     page.should have_content('Stránka byla úspěšně vytvořena.')
     page = EtabliocmsPages::Page.last
-    page.title.should == 'A title with české znaky ěščřžýáíé'
-    page.slug.should == 'a-title-with-ceske-znaky-escrzyaie'
+    page.contents.first.title.should == 'A title with české znaky ěščřžýáíé'
+    page.contents.first.slug.should == 'a-title-with-ceske-znaky-escrzyaie'
   end
 
   scenario 'Moving pages in hierarchy via edit' do

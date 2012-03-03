@@ -4,7 +4,7 @@ module EtabliocmsPages
     validates :title, :presence => true
     validates :locale, :presence => true
 
-    belongs_to :page
+    belongs_to :page, :inverse_of => :contents
 
     serialize :areas, Hash
 
