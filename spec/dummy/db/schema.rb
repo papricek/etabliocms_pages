@@ -11,18 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120223171131) do
+ActiveRecord::Schema.define(:version => 20120303143033) do
 
-  create_table "pages", :force => true do |t|
+  create_table "contents", :force => true do |t|
     t.string   "title",      :null => false
     t.string   "slug",       :null => false
-    t.text     "text"
+    t.text     "areas"
+    t.string   "locale",     :null => false
+    t.integer  "page_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "pages", :force => true do |t|
     t.string   "url"
     t.integer  "lft"
     t.integer  "rgt"
     t.integer  "parent_id"
     t.boolean  "visible"
-    t.string   "locale",     :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
