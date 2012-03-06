@@ -12,10 +12,10 @@ def change
     end
 
     EtabliocmsPages::Page.all.each do |page|
-      page.contents.create(:title => page.title,
-                           :slug => page.slug,
-                           :locale => page.locale,
-                           :areas => {:text => page.text})
+      page.contents.create!(:title => page.read_attribute('title'),
+                           :slug => page.read_attribute('slug'),
+                           :locale => page.read_attribute('locale'),
+                           :areas => {:text => page.read_attribute('text'), :sidebar => page.read_attribute('sidebar')})
     end
     remove_column :pages, :title
     remove_column :pages, :slug
