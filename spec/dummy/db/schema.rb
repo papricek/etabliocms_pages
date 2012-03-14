@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120303143033) do
+ActiveRecord::Schema.define(:version => 20120312173022) do
 
   create_table "contents", :force => true do |t|
     t.string   "title",      :null => false
@@ -29,8 +29,9 @@ ActiveRecord::Schema.define(:version => 20120303143033) do
     t.integer  "rgt"
     t.integer  "parent_id"
     t.boolean  "visible"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "locked",     :default => false
   end
 
   create_table "users", :force => true do |t|

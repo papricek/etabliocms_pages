@@ -33,8 +33,13 @@ module EtabliocmsPages
       end
 
       def destroy
-        Page.find(params[:id]).destroy
-        flash[:notice] = t('page.destroyed')
+        @page = Page.find(params[:id])
+        unless @page.locked
+          @page.destroy
+          flash[:notice] = t('page.destroyed')
+        else
+          flash[:notice] = t('page.locked')
+        end
         redirect_to :action => 'index'
       end
 

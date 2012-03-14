@@ -60,4 +60,17 @@ feature 'Pages', '' do
     root.children.reload.first.should == first_child
   end
 
+  scenario 'Locked page shouldnt be destroyable' do
+    locked_page = FactoryGirl.create(:page, :locked => true)
+    visit admin_homepage
+    click_link('Stránky (1)')
+    click_link('Odstranit')
+    page.should have_content('Stránka je uzamčená, nemůže být odstraněna.')
+    locked_page.destroyed?.should be_false
+    locked_page.update_attribute(:locked, false)
+    click_link('Odstranit')
+    page.should have_content('Stránka byla úspěšně odstraněna.')
+    EtabliocmsPages::Page.where(:id => locked_page.id).exists?.should be_false
+  end
+
 end
