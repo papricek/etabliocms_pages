@@ -39,7 +39,7 @@ module EtabliocmsPages
 
     def build_contents_for_available_locales
       I18n.available_locales.each do |available_locale|
-        contents.build(:locale => available_locale) unless contents.detect { |c| c.locale == available_locale.to_s }
+        contents.build(:locale => available_locale) unless contents.map(&:locale).include?(available_locale.to_s)
       end
     end
 

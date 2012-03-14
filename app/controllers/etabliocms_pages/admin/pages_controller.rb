@@ -20,6 +20,7 @@ module EtabliocmsPages
 
       def edit
         @page = Page.find(params[:id])
+        @page.build_contents_for_available_locales
       end
 
       def update
