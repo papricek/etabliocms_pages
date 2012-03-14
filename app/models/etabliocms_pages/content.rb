@@ -9,6 +9,7 @@ module EtabliocmsPages
     serialize :areas, Hash
 
     has_slug :to_param => "path"
+    has_paper_trail
 
   end
 end

@@ -15,6 +15,9 @@ module EtabliocmsPages
 
     validate :at_least_one_content_has_title
 
+    has_paper_trail
+
+
     def path
       self_and_ancestors.map{|p| p.slug }.join("/")
     end
