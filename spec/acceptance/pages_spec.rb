@@ -8,7 +8,7 @@ feature 'Pages', '' do
     login_as(user)
   end
 
-  scenario 'Some crud for admin' do
+  scenario 'Some crud for admin with save and continue' do
     click_link('Stránky (0)')
     page.should have_content('Stránky')
     click_link('Přidat stránku »')
@@ -17,9 +17,15 @@ feature 'Pages', '' do
     fill_in 'Nadpis', :with => 'A title with české znaky ěščřžýáíé'
     click_button('Uložit')
     page.should have_content('Stránka byla úspěšně vytvořena.')
-    page = EtabliocmsPages::Page.last
-    page.contents.first.title.should == 'A title with české znaky ěščřžýáíé'
-    page.contents.first.slug.should == 'a-title-with-ceske-znaky-escrzyaie'
+    p = EtabliocmsPages::Page.last
+    p.contents.first.title.should == 'A title with české znaky ěščřžýáíé'
+    p.contents.first.slug.should == 'a-title-with-ceske-znaky-escrzyaie'
+    click_link(p.contents.first.title)
+    fill_in 'Nadpis', :with => 'Changed!'
+    click_button('Uložit a pokračovat')
+    page.should have_content('Stránka byla úspěšně upravena.')
+    p.contents.reload.first.title.should == 'Changed!'
+    current_path.should include('edit')
   end
 
   scenario 'Moving pages in hierarchy via edit' do
