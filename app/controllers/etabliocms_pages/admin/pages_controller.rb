@@ -11,7 +11,7 @@ module EtabliocmsPages
         @page = Page.new(params[:etabliocms_pages_page])
         if @page.save
           flash[:notice] = t('page.created')
-          redirect_to :action => 'index'
+          redirect_to params[:save_and_continue].present? ? {:action => 'edit'} : {:action => 'index'}
         else
           @page.build_contents_for_available_locales
           render :action => 'new'
@@ -27,7 +27,7 @@ module EtabliocmsPages
         @page = Page.find(params[:id])
         if @page.update_attributes(params[:etabliocms_pages_page])
           flash[:notice] = t('page.updated')
-          redirect_to :action => 'index'
+          redirect_to params[:save_and_continue].present? ? {:action => 'edit'} : {:action => 'index'}
         else
           render :action => 'edit'
         end

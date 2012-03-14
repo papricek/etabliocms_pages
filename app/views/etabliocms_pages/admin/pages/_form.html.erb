@@ -41,8 +41,10 @@
 <fieldset>
 
   <% I18n.locale = I18n.default_locale %>
-  <p>
+  <p class="submit-box">
     <%= submit_tag t('admin.save'), :class => 'submit' %>
+    <span class="or"><%= t('admin.or') %></span>
+    <%= submit_tag t('admin.save_and_continue'), :class => 'submit', :name => "save_and_continue" %>
   </p>
 
 </fieldset>
