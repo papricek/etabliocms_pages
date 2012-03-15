@@ -74,10 +74,11 @@
 <script>
     $(function() {
         $("#contents").tabs();
+        AdminPages.initCopyPaste();
+
         $('#etabliocms_pages_page_attachment_data').click(function(event) {
             event.preventDefault();
         });
-
         $('#etabliocms_pages_page_attachment_data').uploadify({
 
             uploader : '/uploadify/uploadify.swf',
@@ -91,10 +92,10 @@
                 'attachable_id'     : '<%= @page.id %>'},
             onComplete: function(event, queueID, fileObj, response, data) {
                 $('#attachments').html(response);
+                AdminPages.initCopyPaste();
             }
 
         });
-
         $('#data-submit').click(function(event) {
             event.preventDefault();
             $('#etabliocms_pages_page_attachment_data').uploadifyUpload();

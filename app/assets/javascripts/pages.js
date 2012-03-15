@@ -1,10 +1,11 @@
 var AdminPages = function() {
 
     return {
-        initCopyPaste : function(that) {
-            $(that).zclip({
+        initCopyPaste : function() {
+            $('.icon-copypaste').zclip({
                     path:'/uploadify/ZeroClipboard.swf',
-                    copy: $(that).parent().find(".url").text()
+                    copy: $(this).parent().find(".url").text,
+                    clickAfter: false
                 }
             );
         }
