@@ -1,3 +1,13 @@
+
 <% @page.attachments.each do |attachment| %>
-    <p><%= attachment.data_file_name %></p>
+    <p class="attachment">
+
+      <span class="url"><%= attachment.data_file_name %></span>
+
+      <%= link_to_function t('admin.attachments.copypaste'),
+                           "AdminPages.initCopyPaste(this);",
+                           :class => "icon icon-copypaste", :title => t('admin.attachments.copypaste') %>
+
+
+    </p>
 <% end %>

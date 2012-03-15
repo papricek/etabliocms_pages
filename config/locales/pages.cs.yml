@@ -5,6 +5,9 @@ cs:
       page_must_be_saved: Pro přikládání souborů musíte stránku nejprve uložit.
       upload: Uploadovat
       select_files: Vybrat soubor
+      copypaste: Zkopírovat do schránky
+      destroy: Odstranit
+      destroy_confirmation: Skutečně chcete smazat tuto přílohu?
   page:
     pages: Stránky
     pages_count: "Stránky (%{count})"
