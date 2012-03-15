@@ -1,9 +1,19 @@
-<% @page.attachments.each do |attachment| %>
-    <p class="attachment">
+<ul>
+  <% @page.attachments.each do |attachment| %>
+      <li class="attachment">
 
-      <span class="url"><%= attachment.data_file_name %></span>
+        <%= link_to attachment.data.url(:default, false), attachment.data.url(:default, false), :class => "url" %>
+        : <%= link_to attachment.data_file_name, attachment.data.url(:default, false) %>
 
-      <%= link_to t('admin.attachments.copypaste'), "#", :class => "icon icon-copypaste", :title => t('admin.attachments.copypaste') %>
+        <%= link_to t('admin.attachments.copypaste'), "#", :class => "icon icon-copypaste", :title => t('admin.attachments.copypaste') %>
 
-    </p>
-<% end %>
+        <%= link_to I18n.t('admin.attachments.destroy'),
+                    destroy_attachment_admin_page_path(@page.id, :attachment_id => attachment.id),
+                    {:method => :delete,
+                     :confirm => t("admin.attachments.destroy_confirmation"),
+                     :remote => true,
+                     :class => 'icon icon-destroy', :title => I18n.t('admin.attachments.destroy')} %>
+
+      </li>
+  <% end %>
+</ul>

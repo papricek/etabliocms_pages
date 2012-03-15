@@ -61,6 +61,10 @@ module EtabliocmsPages
         render :partial => "attachments", :layout => false
       end
 
+      def destroy_attachment
+        @page = Page.find(params[:id])
+        @page.attachments.find(params[:attachment_id]).destroy
+      end
     end
   end
 end
