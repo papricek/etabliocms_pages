@@ -26,14 +26,32 @@
 
   <div id="contents">
     <ul>
-      <%@page.contents.sort_by{|a| a.locale.to_s }.each do |content| %>
+      <% @page.contents.sort_by { |a| a.locale.to_s }.each do |content| %>
           <li><a href="#tabs-<%= content.object_id %>"><%= t("admin.locales.#{content.locale}") %></a></li>
       <% end %>
+      <li><a href="#tabs-attachments"><%= t("admin.attachments.attachments") %></a></li>
     </ul>
 
     <%= f.fields_for :contents do |builder| %>
         <%= render "content_fields", :f => builder %>
     <% end %>
+
+    <div id="tabs-attachments">
+      <legend><%= t('admin.attachments.attachments') %></legend>
+
+      <% unless @page.new_record? %>
+          <div id="attachments">
+            <%= render "attachments" %>
+          </div>
+
+          <%= f.file_field :attachment_data %>
+          <%= f.submit t('admin.attachments.upload'), :id => 'data-submit' %>
+
+      <% else %>
+          <p><%= t('admin.attachments.page_must_be_saved') %></p>
+      <% end %>
+
+    </div>
   </div>
 
 </fieldset>
@@ -48,8 +66,38 @@
 
 </fieldset>
 
+<%- session_key_name = Rails.application.config.session_options[:key] -%>
+
 <script>
     $(function() {
         $("#contents").tabs();
     });
+
+    $('#etabliocms_pages_page_attachment_data').click(function(event) {
+        event.preventDefault();
+    });
+
+    $('#etabliocms_pages_page_attachment_data').uploadify({
+
+        uploader : '/uploadify/uploadify.swf',
+        script : '<%= update_attachments_admin_page_path(@page) %>',
+        multi : true,
+        cancelImg : '/uploadify/cancel.png',
+        buttonText: '<%= t('admin.attachments.select_files') %>',
+        scriptData : { 'format' : 'js',
+            '<%= session_key_name %>' : encodeURIComponent('<%= u cookies[session_key_name] %>'),
+            'authenticity_token' : encodeURIComponent('<%= u form_authenticity_token if protect_against_forgery? %>'),
+            'attachable_id'     : '<%= @page.id %>'},
+        onComplete: function(event, queueID, fileObj, response, data) {
+            $('#attachments').html(response);
+        }
+
+    });
+
+    $('#data-submit').click(function(event) {
+        event.preventDefault();
+        $('#etabliocms_pages_page_attachment_data').uploadifyUpload();
+    });
+
+
 </script>

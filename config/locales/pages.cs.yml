@@ -1,4 +1,10 @@
 cs:
+  admin:
+    attachments:
+      attachments: Přílohy
+      page_must_be_saved: Pro přikládání souborů musíte stránku nejprve uložit.
+      upload: Uploadovat
+      select_files: Vybrat soubor
   page:
     pages: Stránky
     pages_count: "Stránky (%{count})"

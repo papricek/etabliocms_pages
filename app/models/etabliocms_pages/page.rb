@@ -7,11 +7,14 @@ module EtabliocmsPages
     end
 
     acts_as_nested_set
-    attr_accessor :child_of
+    attr_accessor :child_of, :attachment_data
     after_save :update_position
 
     has_many :contents, :class_name => "EtabliocmsPages::Content", :inverse_of => :page, :order => "locale asc", :dependent => :destroy
     accepts_nested_attributes_for :contents, :reject_if => proc { |attributes| attributes['title'].blank? }
+
+    has_many :attachments, :dependent => :destroy, :as => :attachable
+    accepts_nested_attributes_for :attachments
 
     validate :at_least_one_content_has_title
 

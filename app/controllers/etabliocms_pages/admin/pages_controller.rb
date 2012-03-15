@@ -55,6 +55,12 @@ module EtabliocmsPages
         redirect_to :action => 'index'
       end
 
+      def update_attachments
+        @page = Page.find(params[:attachable_id])
+        @attachment = @page.attachments.create(:data => params[:Filedata])
+        render :partial => "attachments", :layout => false
+      end
+
     end
   end
 end

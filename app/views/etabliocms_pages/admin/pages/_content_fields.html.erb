@@ -21,10 +21,9 @@
 
   <% if !@page.new_record? && respond_to?(:page_path) %>
       <p>
-        <% I18n.locale = content.locale %>
         <strong>Náhled: </strong>
         <% path = I18n.available_locales.size == 1 ? page_path(@page) : page_path(@page.locale, @page) %>
-        <%= link_to @page.title, path, :"data-popup" => "true" %>
+        <%= link_to @page.title, path, :"data-popup" => "true" %> : <%= path %>
       </p>
   <% end %>
 

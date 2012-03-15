@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :pages do
         member do
           put :move
+          post :update_attachments
         end
       end
     end
