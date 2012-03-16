@@ -4,6 +4,8 @@ module EtabliocmsPages
     belongs_to :attachable, :polymorphic => true
 
     has_attached_file :data,
+                      :path => ":rails_root/public/system/:class/:attachment/:id/:style/:filename",
+                      :url => "/system/:class/:attachment/:id/:style/:filename",
                       :styles => {
                         :large => EtabliocmsPages.try(:paperclip_large) || "800x800>",
                         :medium => EtabliocmsPages.try(:paperclip_medium) || "400x400>",
