@@ -41,6 +41,7 @@ cs:
         at_least_one_content_has_title: Alespoň jedna jazyková mutace musí mít nadpis.
     attributes:
       "etabliocms_pages/page":
+        class_name: Stránka
         title: Nadpis
         child_of: Rodič
         text: Text
