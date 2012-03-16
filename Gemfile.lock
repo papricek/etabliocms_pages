@@ -10,7 +10,7 @@ PATH
 PATH
   remote: /home/fafa/www/etabliocms/etabliocms_core
   specs:
-    etabliocms_core (0.0.8)
+    etabliocms_core (0.0.9)
       RedCloth (= 4.2.9)
       acts_as_sluggy
       configatron
