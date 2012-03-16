@@ -2,8 +2,8 @@
   <% @page.attachments.each do |attachment| %>
       <li class="attachment">
 
-        <%= link_to attachment.data.url(:default, false), attachment.data.url(:default, false), :class => "url" %>
-        : <%= link_to attachment.data_file_name, attachment.data.url(:default, false) %>
+        <%= link_to attachment.data.url(:default, false), attachment.data.url(:original, false), :class => "url" %>
+        : <%= link_to attachment.data_file_name, attachment.data.url(:original, false) %>
 
         <%= link_to t('admin.attachments.copypaste'), "#", :class => "icon icon-copypaste", :title => t('admin.attachments.copypaste') %>
 
