@@ -1,13 +1,15 @@
 var AdminPages = function() {
 
     return {
-        initCopyPaste : function() {
-            $('.icon-copypaste').zclip({
-                    path:'/uploadify/ZeroClipboard.swf',
-                    copy: $(this).parent().find(".url").text,
-                    clickAfter: false
-                }
-            );
+        initClipboard : function() {
+            $('a.clipboard-link').zclip({
+                path:'/zeroclipboard/ZeroClipboard.swf',
+                copy: function() {
+                    return $(this).closest('tr').find('a.url').attr("href");
+                },
+                setHandCursor: true,
+                clickAfter: false
+            });
         }
     }
 }();

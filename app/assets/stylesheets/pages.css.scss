@@ -1,7 +1,5 @@
 #data-submit { float: none; margin-top: 15px; }
 #attachments-table { width: 650px; overflow: hidden; margin: 0 0 15px 0;
+    .clipboard-link { cursor: hand; }
 }
 
-.attachment { float: left; clear:left;
-    .icon { float: right; }
-}

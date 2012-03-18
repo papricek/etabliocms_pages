@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    etabliocms_pages (0.0.5)
+    etabliocms_pages (0.0.6)
       awesome_nested_set (= 2.1.2)
       etabliocms_core
       paperclip
