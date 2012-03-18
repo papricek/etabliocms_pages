@@ -8,6 +8,7 @@ cs:
       copypaste: Zkopírovat do schránky
       destroy: Odstranit
       destroy_confirmation: Skutečně chcete smazat tuto přílohu?
+      clipboard: Schránka
   page:
     pages: Stránky
     pages_count: "Stránky (%{count})"
@@ -49,3 +50,6 @@ cs:
         locale: Jazyk
         page_title: Meta title
         page_description: Meta description
+      "etabliocms_pages/attachment":
+        data_file_name: Soubor
+        data_file_size: Velikost
