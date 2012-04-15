@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 gemspec
 
-gem 'etabliocms_core', :path => '/home/fafa/www/etabliocms/etabliocms_core'
+gem 'etabliocms_core', :path => '/Users/patrikjira/www/etabliocms/etabliocms_core'
 gem 'awesome_nested_set', '2.1.2', :require => 'awesome_nested_set'
 gem 'paperclip'
 

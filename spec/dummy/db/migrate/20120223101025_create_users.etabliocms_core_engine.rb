@@ -21,7 +21,7 @@ class CreateUsers < ActiveRecord::Migration
     add_index :users, ["email"], :name => "index_users_on_email", :unique => true
     add_index :users, ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
-    EtabliocmsCore::User.create(:email => "patrikjira@gmail.com", :password => "heslo1", :password_confirmation => "heslo1")
+    #EtabliocmsCore::User.create(:email => "patrikjira@gmail.com", :password => "heslo1", :password_confirmation => "heslo1")
   end
 
 end

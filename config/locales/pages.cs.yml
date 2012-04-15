@@ -36,6 +36,8 @@ cs:
           title: Nadpis
           locale: Jazyk
           text: Text
+          meta_title: Meta nadpis
+          meta_description: Meta popisek
   activerecord:
     errors:
       messages:

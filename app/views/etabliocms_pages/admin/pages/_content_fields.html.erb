@@ -19,6 +19,16 @@
       </p>
   <% end %>
 
+  <p>
+    <%= f.label :meta_title %>
+    <%= f.text_field :meta_title, :class => 'text-field' %>
+  </p>
+
+  <p>
+    <%= f.label :meta_description %>
+    <%= f.text_area :meta_description, :class => 'small-text-area' %>
+  </p>
+
   <% if !@page.new_record? && respond_to?(:page_path) %>
       <p>
         <strong>Náhled: </strong>

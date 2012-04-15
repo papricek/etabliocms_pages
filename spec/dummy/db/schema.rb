@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120315105439) do
+ActiveRecord::Schema.define(:version => 20120415145953) do
 
   create_table "attachments", :force => true do |t|
     t.string   "title"
@@ -26,13 +26,15 @@ ActiveRecord::Schema.define(:version => 20120315105439) do
   end
 
   create_table "contents", :force => true do |t|
-    t.string   "title",      :null => false
-    t.string   "slug",       :null => false
+    t.string   "title",            :null => false
+    t.string   "slug",             :null => false
     t.text     "areas"
-    t.string   "locale",     :null => false
-    t.integer  "page_id",    :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "locale",           :null => false
+    t.integer  "page_id",          :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "meta_title"
+    t.text     "meta_description"
   end
 
   create_table "pages", :force => true do |t|
