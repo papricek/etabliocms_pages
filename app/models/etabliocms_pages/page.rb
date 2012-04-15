@@ -1,7 +1,7 @@
 module EtabliocmsPages
   class Page < ActiveRecord::Base
 
-    delegate :title, :areas, :slug, :locale, :to => :content, :allow_nil => true
+    delegate :title, :meta_title, :meta_description, :areas, :slug, :locale, :to => :content, :allow_nil => true
     def content
       contents.where(:locale => I18n.locale).first
     end
