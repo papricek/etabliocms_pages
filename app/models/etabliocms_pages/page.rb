@@ -40,7 +40,7 @@ module EtabliocmsPages
     def other_pages_for_select
       pages = EtabliocmsPages::Page.order("lft ASC")
       pages = pages.where("id != ?", id) unless new_record?
-      pages.map { |d| [d.titles, d.id] }
+      pages.map { |d| ["#{'&nbsp;'*2*d.level}#{d.titles}".html_safe, d.id] }
     end
 
     def build_contents_for_available_locales
